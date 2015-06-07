@@ -1,0 +1,13 @@
+setwd("C:/Users/LBS-Finance/Desktop/Exploratory Data Analysis/courseproject1")
+dt<-read.table("household_power_consumption.txt",header=FALSE,skip=66637,nrows=2880,sep=";",stringsAsFactors=FALSE)
+dtn<-read.table("household_power_consumption.txt",header=TRUE,nrows=1,sep=";")
+dim(dt)
+names(dt)<-names(dtn)
+str(dt)
+library(lubridate)
+dt$Date<-dmy(dt$Date)
+dt$Time<-hms(dt$Time)
+hist(dt$Global_active_power,col="red",xlab="Global Active Power (kilowatts)",main="Global Active Power")
+dev.copy(png,file="plot1.png")
+dev.off()
+
